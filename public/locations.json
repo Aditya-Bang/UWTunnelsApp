@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "name": "Ron Eydt Village",
+        "coordinate": {
+            "latitude": 43.470310163417814,
+            "longitude": -80.55420785825456
+        }
+    },
+    {
+        "id": 1,
+        "name": "Student Life Center",
+        "coordinate": {
+            "latitude": 43.471665862648045,
+            "longitude": -80.54535698262107
+        }
+    },
+    {
+        "id": 1,
+        "name": "Physical Activities Complex",
+        "coordinate": {
+            "latitude": 43.472261910695195,
+            "longitude":  -80.54613848766068
+        }
+    },
+    {
+        "id": 1,
+        "name": "UW Davis Center",
+        "coordinate": {
+            "latitude": 43.47274468416568,
+            "longitude": -80.54227944809911
+        }
+    }
+]
