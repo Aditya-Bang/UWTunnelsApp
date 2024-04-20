@@ -1,5 +1,6 @@
 [
     {
+        "key": 1,
         "value": 1,
         "label": "Ron Eydt Village",
         "markerCoordinate": {
@@ -8,6 +9,7 @@
         }
     },
     {
+        "key": 2,
         "value": 2,
         "label": "Student Life Center",
         "markerCoordinate": {
@@ -221,6 +223,7 @@
         }
     },
     {
+        "key": 3,
         "value": 3,
         "label": "Physical Activities Complex",
         "markerCoordinate": {
@@ -370,6 +373,7 @@
         }
     },
     {
+        "key": 4,
         "value": 4,
         "label": "UW Davis Center",
         "markerCoordinate": {
@@ -378,6 +382,7 @@
         }
     },
     {
+        "key": 5,
         "value": 5,
         "label": "St. Jerome's University",
         "markerCoordinate": {
@@ -386,6 +391,7 @@
         }
     },
     {
+        "key": 6,
         "value": 6,
         "label": "Engineering 3",
         "markerCoordinate": {
@@ -394,6 +400,7 @@
         }
     },
     {
+        "key": 7,
         "value": 7,
         "label": "Quantum Nano Centre",
         "markerCoordinate": {
@@ -402,6 +409,7 @@
         }
     },
     {
+        "key": 8,
         "value": 8,
         "label": "Village 1",
         "markerCoordinate": {

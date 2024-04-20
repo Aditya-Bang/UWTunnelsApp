@@ -37,7 +37,6 @@ export default function App() {
 
         if (!startNode || !endNode) return;
 
-
         // Initialize distances object with infinity for all nodes
         const distances = {};
         for (let node in graph) {
@@ -82,6 +81,12 @@ export default function App() {
         }
 
         // Reconstruct the shortest path
+        console.log(distances)
+        console.log(graph)
+        if (!distances[endNode]) {
+            setTunnelPath([]);
+            return;
+        }
         const shortestPath = [];
         const tunnelCoords = [];
         let currentNode = endNode;
@@ -187,7 +192,7 @@ export default function App() {
                 onRegionChange={(region) => setRegion(region)}
             >
                 {locations.map((location, index) => (
-                    <>
+                    <View key={`stuff ${index}`}>
                         {(location.value == value1) ?
                             <Marker
                                 key={`marker from ${index}`}
@@ -218,28 +223,18 @@ export default function App() {
                             :
                             <></>
                         }
-
-                    </>
+                    </View>
                 ))}
-                {tunnelPath.map((tunnelCoord, index) => {
-                    console.log(tunnelCoord);
-                    <>
-                        <Polyline
-                            key={`tunnels ${index}`}
-                            coordinates={tunnelCoord}
-                            strokeColor='#000000'
-                            strokeWidth={5}
-                        />
-                    </>
-                })}
-                <Polyline
-                    key={`tunnels test`}
-                    coordinates={[{"latitude": 43.47274468416568, "longitude": -80.54227944809911}, {"latitude": 43.471665862648045, "longitude": -80.54535698262107}]}
-                    strokeColor='#000000'
-                    strokeWidth={5}
-                    lineJoin='round'
-                />
 
+                {tunnelPath.map((tunnelCoord, index) => {
+                    return (<Polyline
+                        key={`tunnel polyline ${index}`}
+                        coordinates={tunnelCoord}
+                        strokeColor='#000000'
+                        strokeWidth={5}
+                        lineDashPattern={[1]}
+                    />)
+                })}
             </MapView>
 
             <Pressable className="p-4 bg-blue-200 rounded-lg" onPress={() => { mapRef.current.animateToRegion(initialRegion, 1 * 1000) }}>
