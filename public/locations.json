@@ -1,34 +1,412 @@
 [
     {
-        "id": 1,
-        "name": "Ron Eydt Village",
-        "coordinate": {
+        "value": 1,
+        "label": "Ron Eydt Village",
+        "markerCoordinate": {
             "latitude": 43.470310163417814,
             "longitude": -80.55420785825456
         }
     },
     {
-        "id": 1,
-        "name": "Student Life Center",
-        "coordinate": {
+        "value": 2,
+        "label": "Student Life Center",
+        "markerCoordinate": {
             "latitude": 43.471665862648045,
             "longitude": -80.54535698262107
+        },
+        "polygon": {
+            "coordinates": [
+                {
+                    "latitude": 43.472157501279234,
+                    "longitude": -80.54516612781376
+                },
+                {
+                    "latitude": 43.47200664713554,
+                    "longitude": -80.54506085111072
+                },
+                {
+                    "latitude": 43.4719677169724,
+                    "longitude": -80.54512522412408
+                },
+                {
+                    "latitude": 43.47191613446921,
+                    "longitude": -80.54515338731763
+                },
+                {
+                    "latitude": 43.47186941820137,
+                    "longitude": -80.54514802289965
+                },
+                {
+                    "latitude": 43.471845086797856,
+                    "longitude": -80.54513327075065
+                },
+                {
+                    "latitude": 43.47181686235697,
+                    "longitude": -80.54509773148158
+                },
+                {
+                    "latitude": 43.47179593733233,
+                    "longitude": -80.54503872288556
+                },
+                {
+                    "latitude": 43.47179155767474,
+                    "longitude": -80.54500385416888
+                },
+                {
+                    "latitude": 43.47180275013127,
+                    "longitude": -80.5449186940354
+                },
+                {
+                    "latitude": 43.471708830755105,
+                    "longitude": -80.54485096825935
+                },
+                {
+                    "latitude": 43.47166406084486,
+                    "longitude": -80.54487242593034
+                },
+                {
+                    "latitude": 43.47166746725167,
+                    "longitude": -80.54489522470627
+                },
+                {
+                    "latitude": 43.471562355165325,
+                    "longitude": -80.54493076397388
+                },
+                {
+                    "latitude": 43.47157111451228,
+                    "longitude": -80.54497770262977
+                },
+                {
+                    "latitude": 43.471536077114514,
+                    "longitude": -80.54499178422653
+                },
+                {
+                    "latitude": 43.47152001829974,
+                    "longitude": -80.54492741121216
+                },
+                {
+                    "latitude": 43.471394467425114,
+                    "longitude": -80.54497770262905
+                },
+                {
+                    "latitude": 43.47140809311388,
+                    "longitude": -80.54504408729957
+                },
+                {
+                    "latitude": 43.471398847111125,
+                    "longitude": -80.54504744006071
+                },
+                {
+                    "latitude": 43.471381814996406,
+                    "longitude": -80.54497300876277
+                },
+                {
+                    "latitude": 43.47135699676447,
+                    "longitude": -80.5449837375984
+                },
+                {
+                    "latitude": 43.47135991655698,
+                    "longitude": -80.54501123023972
+                },
+                {
+                    "latitude": 43.4712207396212,
+                    "longitude": -80.54506621552251
+                },
+                {
+                    "latitude": 43.471266969757465,
+                    "longitude": -80.54528816832612
+                },
+                {
+                    "latitude": 43.47128886823056,
+                    "longitude": -80.54528079225162
+                },
+                {
+                    "latitude": 43.47130006078039,
+                    "longitude": -80.54533376587757
+                },
+                {
+                    "latitude": 43.47128546180192,
+                    "longitude": -80.5453411419521
+                },
+                {
+                    "latitude": 43.47130395384072,
+                    "longitude": -80.5454195965627
+                },
+                {
+                    "latitude": 43.471321472609105,
+                    "longitude": -80.54541289104043
+                },
+                {
+                    "latitude": 43.47134239779804,
+                    "longitude": -80.54550810945672
+                },
+                {
+                    "latitude": 43.47132439240334,
+                    "longitude": -80.54551548553121
+                },
+                {
+                    "latitude": 43.47134288443023,
+                    "longitude": -80.54559394014183
+                },
+                {
+                    "latitude": 43.47133801810791,
+                    "longitude": -80.54559796345518
+                },
+                {
+                    "latitude": 43.4713360715805,
+                    "longitude": -80.54572603894302
+                },
+                {
+                    "latitude": 43.47143680437581,
+                    "longitude": -80.5456837941527
+                },
+                {
+                    "latitude": 43.47145480973835,
+                    "longitude": -80.54575621379357
+                },
+                {
+                    "latitude": 43.47153364396095,
+                    "longitude": -80.54572402728516
+                },
+                {
+                    "latitude": 43.471585226792335,
+                    "longitude": -80.54590574694348
+                },
+                {
+                    "latitude": 43.471737292771174,
+                    "longitude": -80.54585237031279
+                },
+                {
+                    "latitude": 43.471717340977385,
+                    "longitude": -80.54573435312075
+                },
+                {
+                    "latitude": 43.47185359700275,
+                    "longitude": -80.54567735617688
+                },
+                {
+                    "latitude": 43.47182488593804,
+                    "longitude": -80.54554928070142
+                },
+                {
+                    "latitude": 43.47187549526389,
+                    "longitude": -80.5455291641337
+                },
+                {
+                    "latitude": 43.4719027464218,
+                    "longitude": -80.54548222547626
+                },
+                {
+                    "latitude": 43.471905666187965,
+                    "longitude": -80.54549161320745
+                },
+                {
+                    "latitude": 43.472032675881394,
+                    "longitude": -80.5454594266989
+                },
+                {
+                    "latitude": 43.4720273229884,
+                    "longitude": -80.54541181748897
+                },
+                {
+                    "latitude": 43.47211880874006,
+                    "longitude": -80.54534275060794
+                },
+                {
+                    "latitude": 43.4720959373154,
+                    "longitude": -80.5452777070398
+                }
+            ],
+            "color": "#21A567"
         }
     },
     {
-        "id": 1,
-        "name": "Physical Activities Complex",
-        "coordinate": {
+        "value": 3,
+        "label": "Physical Activities Complex",
+        "markerCoordinate": {
             "latitude": 43.472261910695195,
-            "longitude":  -80.54613848766068
+            "longitude": -80.54613848766068
+        },
+        "polygon": {
+            "coordinates": [
+                {
+                    "latitude": 43.47203867528357,
+                    "longitude": -80.54673227690026
+                },
+                {
+                    "latitude": 43.472169577699816,
+                    "longitude": -80.54667595051316
+                },
+                {
+                    "latitude": 43.47216811782415,
+                    "longitude": -80.54664041124403
+                },
+                {
+                    "latitude": 43.47227371548186,
+                    "longitude": -80.54659548424303
+                },
+                {
+                    "latitude": 43.47228594896233,
+                    "longitude": -80.54664475635627
+                },
+                {
+                    "latitude": 43.47242706994215,
+                    "longitude": -80.54658507720968
+                },
+                {
+                    "latitude": 43.472416733760355,
+                    "longitude": -80.54654158776204
+                },
+                {
+                    "latitude": 43.47251211190479,
+                    "longitude": -80.54650001352331
+                },
+                {
+                    "latitude": 43.47251941124664,
+                    "longitude": -80.54653085892572
+                },
+                {
+                    "latitude": 43.47265966453242,
+                    "longitude": -80.54647072252008
+                },
+                {
+                    "latitude": 43.47262268127876,
+                    "longitude": -80.54630442556606
+                },
+                {
+                    "latitude": 43.47264944547796,
+                    "longitude": -80.54629235562496
+                },
+                {
+                    "latitude": 43.47263533344724,
+                    "longitude": -80.54622395929776
+                },
+                {
+                    "latitude": 43.472945561895955,
+                    "longitude": -80.5460918097308
+                },
+                {
+                    "latitude": 43.4728647830365,
+                    "longitude": -80.54573038207027
+                },
+                {
+                    "latitude": 43.47255285883305,
+                    "longitude": -80.5458618103056
+                },
+                {
+                    "latitude": 43.472535340421025,
+                    "longitude": -80.54578603790151
+                },
+                {
+                    "latitude": 43.47248813800937,
+                    "longitude": -80.54580481336387
+                },
+                {
+                    "latitude": 43.47247451256408,
+                    "longitude": -80.5457417814545
+                },
+                {
+                    "latitude": 43.472496410599625,
+                    "longitude": -80.54573172317107
+                },
+                {
+                    "latitude": 43.47247159282541,
+                    "longitude": -80.54562108205356
+                },
+                {
+                    "latitude": 43.47234566086942,
+                    "longitude": -80.54567481761163
+                },
+                {
+                    "latitude": 43.47231743666112,
+                    "longitude": -80.54555143600031
+                },
+                {
+                    "latitude": 43.47195033463804,
+                    "longitude": -80.54570667330759
+                },
+                {
+                    "latitude": 43.47197612588055,
+                    "longitude": -80.54582334939516
+                },
+                {
+                    "latitude": 43.471849602698626,
+                    "longitude": -80.54587833467781
+                },
+                {
+                    "latitude": 43.471874709971026,
+                    "longitude": -80.54599325399639
+                },
+                {
+                    "latitude": 43.471896121596764,
+                    "longitude": -80.5459845368173
+                },
+                {
+                    "latitude": 43.471916559959105,
+                    "longitude": -80.54607506136801
+                },
+                {
+                    "latitude": 43.471860597760006,
+                    "longitude": -80.5460992012482
+                },
+                {
+                    "latitude": 43.47195743666486,
+                    "longitude": -80.54652902524474
+                },
+                {
+                    "latitude": 43.47201193889385,
+                    "longitude": -80.54650555591678
+                },
+                {
+                    "latitude": 43.47203675685772,
+                    "longitude": -80.54661284427719
+                },
+                {
+                    "latitude": 43.47201388540285,
+                    "longitude": -80.54662223201392
+                }
+            ],
+            "color": "#59CFF1"
         }
     },
     {
-        "id": 1,
-        "name": "UW Davis Center",
-        "coordinate": {
+        "value": 4,
+        "label": "UW Davis Center",
+        "markerCoordinate": {
             "latitude": 43.47274468416568,
             "longitude": -80.54227944809911
+        }
+    },
+    {
+        "value": 5,
+        "label": "St. Jerome's University",
+        "markerCoordinate": {
+            "latitude": 43.469342092666615,
+            "longitude": -80.54579002457618
+        }
+    },
+    {
+        "value": 6,
+        "label": "Engineering 3",
+        "markerCoordinate": {
+            "latitude": 43.47164644126953,
+            "longitude": -80.54078438294229
+        }
+    },
+    {
+        "value": 7,
+        "label": "Quantum Nano Centre",
+        "markerCoordinate": {
+            "latitude": 43.471209472299506,
+            "longitude": -80.54413199063997
+        }
+    },
+    {
+        "value": 8,
+        "label": "Village 1",
+        "markerCoordinate": {
+            "latitude": 43.47157537315203,
+            "longitude": -80.5499401893528
         }
     }
 ]
