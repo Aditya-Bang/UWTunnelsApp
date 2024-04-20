@@ -1,13 +1,12 @@
-import React, { useRef, useState } from 'react';
-import MapView, { Marker, PROVIDER_GOOGLE, Polygon } from 'react-native-maps';
+import React, { useRef, useState, useEffect } from 'react';
+import MapView, { Marker, PROVIDER_GOOGLE, Polygon, Polyline } from 'react-native-maps';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Feather, AntDesign } from '@expo/vector-icons';
 import mapStyles from '../public/mapStyles.json'
 import locations from '../public/locations.json'
-
-// NEED Polygons for building outlines
+import tunnels from '../public/tunnels.json'
 
 const initialRegion = {
     latitude: 43.47136232108102,
@@ -27,6 +26,100 @@ export default function App() {
     const [isFocus1, setIsFocus1] = useState(false);
     const [value2, setValue2] = useState(null);
     const [isFocus2, setIsFocus2] = useState(false);
+    const [tunnelPath, setTunnelPath] = useState([]);
+    const [adjl, setAdjl] = useState({});
+
+    function myToString(x) {
+        if (!x) return null;
+        else return x.toString();
+    }
+    function dijkstra(graph, startNode, endNode) {
+
+        if (!startNode || !endNode) return;
+
+
+        // Initialize distances object with infinity for all nodes
+        const distances = {};
+        for (let node in graph) {
+            distances[node] = Infinity;
+        }
+        distances[startNode] = 0;
+
+        // Initialize priority queue with start node
+        const priorityQueue = [startNode];
+
+        // Keep track of visited nodes
+        const visited = {};
+
+        // While there are nodes to visit in the priority queue
+        while (priorityQueue.length > 0) {
+            // Extract the node with the smallest distance from the priority queue
+            const currentNode = priorityQueue.shift();
+
+            // If the current node is the end node, we're done
+            if (currentNode === endNode) {
+                break;
+            }
+
+            // If the current node has already been visited, skip it
+            if (visited[currentNode]) {
+                continue;
+            }
+            visited[currentNode] = true;
+
+            // Visit all neighboring nodes
+            for (let neighbor in graph[currentNode]) {
+                const distanceToNeighbor = distances[currentNode] + graph[currentNode][neighbor].weight;
+                // If the distance to the neighbor is shorter than the current known distance
+                if (distanceToNeighbor < distances[neighbor]) {
+                    distances[neighbor] = distanceToNeighbor;
+                    // Add the neighbor to the priority queue
+                    priorityQueue.push(neighbor);
+                    // Sort the priority queue based on distances
+                    priorityQueue.sort((a, b) => distances[a] - distances[b]);
+                }
+            }
+        }
+
+        // Reconstruct the shortest path
+        const shortestPath = [];
+        const tunnelCoords = [];
+        let currentNode = endNode;
+        while (currentNode !== startNode) {
+
+            shortestPath.unshift(currentNode);
+
+            for (let neighbor in graph[currentNode]) {
+
+                if (distances[currentNode] === distances[neighbor] + graph[neighbor][currentNode].weight) {
+                    tunnelCoords.unshift(graph[neighbor][currentNode].coordinates);
+                    currentNode = neighbor;
+                    break;
+                }
+            }
+        }
+        shortestPath.unshift(startNode);
+
+
+        // Return the shortest path and its distance
+        setTunnelPath(tunnelCoords);
+    }
+
+    useEffect(() => {
+        const myAdjl = {};
+        tunnels.forEach(tunnel => {
+            if (!myAdjl[tunnel.a]) {
+                myAdjl[tunnel.a] = {};
+            }
+            if (!myAdjl[tunnel.b]) {
+                myAdjl[tunnel.b] = {};
+            }
+            myAdjl[tunnel.a][tunnel.b] = { weight: tunnel.weight, id: tunnel.id, coordinates: tunnel.coordinates };
+            myAdjl[tunnel.b][tunnel.a] = { weight: tunnel.weight, id: tunnel.id, coordinates: tunnel.coordinates };
+        })
+
+        setAdjl(myAdjl);
+    }, [])
 
     return (
         <View className="flex-1 gap-2 p-3 items-center justify-center bg-gray-900">
@@ -49,7 +142,7 @@ export default function App() {
                 onChange={item => {
                     setValue1(item.value);
                     setIsFocus1(false);
-                    console.log("value1", value1)
+                    dijkstra(adjl, myToString(item.value), myToString(value2))
                 }}
                 renderLeftIcon={() => (
                     <Text style={styles.selectedTextStyle}>
@@ -76,7 +169,7 @@ export default function App() {
                 onChange={item => {
                     setValue2(item.value);
                     setIsFocus2(false);
-                    console.log("value2", value2)
+                    dijkstra(adjl, myToString(value1), myToString(item.value))
                 }}
                 renderLeftIcon={() => (
                     <Text className="" style={styles.selectedTextStyle}>
@@ -113,10 +206,6 @@ export default function App() {
                             />
                             : <></>
                         }
-                        
-
-
-
                         {location.polygon ?
                             <Polygon
                                 key={`building ${index}`}
@@ -125,17 +214,31 @@ export default function App() {
                                 strokeColor="#27f"
                                 strokeWidth={2}
                                 tappable={true}
-                                onPress={() => console.log("Pressed")} />
+                            />
                             :
                             <></>
                         }
 
                     </>
                 ))}
-
-
-
-
+                {tunnelPath.map((tunnelCoord, index) => {
+                    console.log(tunnelCoord);
+                    <>
+                        <Polyline
+                            key={`tunnels ${index}`}
+                            coordinates={tunnelCoord}
+                            strokeColor='#000000'
+                            strokeWidth={5}
+                        />
+                    </>
+                })}
+                <Polyline
+                    key={`tunnels test`}
+                    coordinates={[{"latitude": 43.47274468416568, "longitude": -80.54227944809911}, {"latitude": 43.471665862648045, "longitude": -80.54535698262107}]}
+                    strokeColor='#000000'
+                    strokeWidth={5}
+                    lineJoin='round'
+                />
 
             </MapView>
 

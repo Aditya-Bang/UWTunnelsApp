@@ -1,0 +1,25 @@
+const makeGraph = () => {
+    const MAXN = 100;
+    const INF = 1e9;
+
+    const adjl = [];
+    for (var i = 0; i < MAXN; i++) {
+        adjl.push([]);
+    }
+
+    tunnels.forEach(tunnel => {
+        adjl[tunnel.a].push({ to: tunnel.b, weight: tunnel.weight, id: tunnel.id });
+        adjl[tunnel.b].push({ to: tunnel.a, weight: tunnel.weight, id: tunnel.id });
+    })
+
+    const visited = [];
+    for (var i = 0; i < MAXN; i++) {
+        visited.push(false);
+    }
+    const dist = [];
+    for (var i = 0; i < MAXN; i++) {
+        dist.push(INF);
+    }
+
+    
+}
