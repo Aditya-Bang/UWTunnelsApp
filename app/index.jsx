@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE, Polygon, Polyline } from 'react-native-maps';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Feather, AntDesign } from '@expo/vector-icons';
@@ -33,6 +33,7 @@ export default function App() {
         if (!x) return null;
         else return x.toString();
     }
+
     function dijkstra(graph, startNode, endNode) {
 
         if (!startNode || !endNode) return;
@@ -81,8 +82,6 @@ export default function App() {
         }
 
         // Reconstruct the shortest path
-        console.log(distances)
-        console.log(graph)
         if (!distances[endNode]) {
             setTunnelPath([]);
             return;
@@ -108,6 +107,34 @@ export default function App() {
 
         // Return the shortest path and its distance
         setTunnelPath(tunnelCoords);
+
+        // change region
+        var leftMin = Infinity;
+        var rightMax = -Infinity;
+        var topMax = -Infinity;
+        var bottomMin = Infinity;
+        var latCenter, longCenter, deltaPath;
+
+        tunnelCoords.forEach((tunnelInPath) => {
+            tunnelInPath.forEach((segment) => {
+                leftMin = Math.min(segment.latitude, leftMin);
+                rightMax = Math.max(segment.latitude, rightMax);
+                topMax = Math.max(segment.longitude, topMax);
+                bottomMin = Math.min(segment.longitude, bottomMin);
+            })
+        })
+
+        latCenter = (rightMax + leftMin) / 2;
+        longCenter = (topMax + bottomMin) / 2;
+        deltaPath = Math.max(rightMax - leftMin, topMax - bottomMin) * 1.05;
+        
+        mapRef.current.animateToRegion({latitude: latCenter, longitude: longCenter, latitudeDelta: deltaPath, longitudeDelta: deltaPath}, 1 * 1000)
+
+    }
+
+    const findRoute = () => {
+        dijkstra(adjl, value1.toString(), value2.toString());
+
     }
 
     useEffect(() => {
@@ -147,7 +174,7 @@ export default function App() {
                 onChange={item => {
                     setValue1(item.value);
                     setIsFocus1(false);
-                    dijkstra(adjl, myToString(item.value), myToString(value2))
+                    
                 }}
                 renderLeftIcon={() => (
                     <Text style={styles.selectedTextStyle}>
@@ -174,7 +201,7 @@ export default function App() {
                 onChange={item => {
                     setValue2(item.value);
                     setIsFocus2(false);
-                    dijkstra(adjl, myToString(value1), myToString(item.value))
+                    
                 }}
                 renderLeftIcon={() => (
                     <Text className="" style={styles.selectedTextStyle}>
@@ -182,6 +209,13 @@ export default function App() {
                     </Text>
                 )}
             />
+            <TouchableOpacity
+                disabled={((!value1 || !value2) || (value1 == value2))}
+                className={`p-4 bg-blue-500 ${((!value1 || !value2) || (value1 == value2)) && "bg-blue-200" } rounded-lg`}
+                onPress={() => findRoute()}
+            >
+                <Text className="text-black dark:text-white uppercase">Find Route</Text>
+            </TouchableOpacity>
 
             <MapView className='h-[400px] w-full'
                 ref={mapRef}
