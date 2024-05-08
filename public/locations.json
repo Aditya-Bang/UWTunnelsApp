@@ -2,7 +2,7 @@
     {
         "key": 1,
         "value": 1,
-        "label": "Ron Eydt Village",
+        "label": "Ron Eydt Village (REV)",
         "markerCoordinate": {
             "latitude": 43.470310163417814,
             "longitude": -80.55420785825456
@@ -11,7 +11,7 @@
     {
         "key": 2,
         "value": 2,
-        "label": "Student Life Center",
+        "label": "Student Life Center (SLC)",
         "markerCoordinate": {
             "latitude": 43.471665862648045,
             "longitude": -80.54535698262107
@@ -225,7 +225,7 @@
     {
         "key": 3,
         "value": 3,
-        "label": "Physical Activities Complex",
+        "label": "Physical Activities Complex (PAC)",
         "markerCoordinate": {
             "latitude": 43.472261910695195,
             "longitude": -80.54613848766068
@@ -375,7 +375,7 @@
     {
         "key": 4,
         "value": 4,
-        "label": "UW Davis Center",
+        "label": "UW Davis Center (DC)",
         "markerCoordinate": {
             "latitude": 43.47274468416568,
             "longitude": -80.54227944809911
@@ -393,7 +393,7 @@
     {
         "key": 6,
         "value": 6,
-        "label": "Engineering 3",
+        "label": "Engineering 3 (E3)",
         "markerCoordinate": {
             "latitude": 43.47164644126953,
             "longitude": -80.54078438294229
@@ -402,7 +402,7 @@
     {
         "key": 7,
         "value": 7,
-        "label": "Quantum Nano Centre",
+        "label": "Quantum Nano Centre (QNC)",
         "markerCoordinate": {
             "latitude": 43.471209472299506,
             "longitude": -80.54413199063997
@@ -411,7 +411,7 @@
     {
         "key": 8,
         "value": 8,
-        "label": "Village 1",
+        "label": "Village 1 (V1)",
         "markerCoordinate": {
             "latitude": 43.47157537315203,
             "longitude": -80.5499401893528

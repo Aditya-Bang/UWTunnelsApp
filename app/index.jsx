@@ -7,6 +7,7 @@ import { Feather, AntDesign } from '@expo/vector-icons';
 import mapStyles from '../public/mapStyles.json'
 import locations from '../public/locations.json'
 import tunnels from '../public/tunnels.json'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const initialRegion = {
     latitude: 43.47136232108102,
@@ -28,6 +29,7 @@ export default function App() {
     const [isFocus2, setIsFocus2] = useState(false);
     const [tunnelPath, setTunnelPath] = useState([]);
     const [adjl, setAdjl] = useState({});
+    const [noRoute, setNoRoute] = useState(false);
 
     function myToString(x) {
         if (!x) return null;
@@ -84,6 +86,7 @@ export default function App() {
         // Reconstruct the shortest path
         if (!distances[endNode]) {
             setTunnelPath([]);
+            setNoRoute(true);
             return;
         }
         const shortestPath = [];
@@ -107,6 +110,7 @@ export default function App() {
 
         // Return the shortest path and its distance
         setTunnelPath(tunnelCoords);
+        setNoRoute(false);
 
         // change region
         var leftMin = Infinity;
@@ -126,9 +130,9 @@ export default function App() {
 
         latCenter = (rightMax + leftMin) / 2;
         longCenter = (topMax + bottomMin) / 2;
-        deltaPath = Math.max(rightMax - leftMin, topMax - bottomMin) * 1.05;
-        
-        mapRef.current.animateToRegion({latitude: latCenter, longitude: longCenter, latitudeDelta: deltaPath, longitudeDelta: deltaPath}, 1 * 1000)
+        deltaPath = Math.max(rightMax - leftMin, topMax - bottomMin) * 1.25;
+
+        mapRef.current.animateToRegion({ latitude: latCenter, longitude: longCenter, latitudeDelta: deltaPath, longitudeDelta: deltaPath }, 1 * 1000)
 
     }
 
@@ -154,70 +158,77 @@ export default function App() {
     }, [])
 
     return (
-        <View className="flex-1 gap-2 p-3 items-center justify-center bg-gray-900">
-            <Dropdown
-                className={`w-full bg-white h-[50px] border border-gray-300 rounded-md px-[8px] ${(value1 || isFocus1) && "border-blue-700"}`}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                inputSearchStyle={styles.inputSearchStyle}
-                iconStyle={styles.iconStyle}
-                data={locations}
-                search
-                maxHeight={300}
-                labelField="label"
-                valueField="value"
-                placeholder={!isFocus1 ? 'Select item' : '...'}
-                searchPlaceholder="Search..."
-                value={value1}
-                onFocus={() => setIsFocus1(true)}
-                onBlur={() => setIsFocus1(false)}
-                onChange={item => {
-                    setValue1(item.value);
-                    setIsFocus1(false);
-                    
-                }}
-                renderLeftIcon={() => (
-                    <Text style={styles.selectedTextStyle}>
-                        From:&nbsp;
-                    </Text>
-                )}
-            />
-            <Dropdown
-                className={`w-full h-[50px] bg-white border border-gray-300 rounded-md px-[8px] ${(value2 || isFocus2) && "border-blue-700"}`}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                inputSearchStyle={styles.inputSearchStyle}
-                iconStyle={styles.iconStyle}
-                data={locations}
-                search
-                maxHeight={300}
-                labelField="label"
-                valueField="value"
-                placeholder={!isFocus2 ? 'Select item' : '...'}
-                searchPlaceholder="Search..."
-                value={value2}
-                onFocus={() => setIsFocus2(true)}
-                onBlur={() => setIsFocus2(false)}
-                onChange={item => {
-                    setValue2(item.value);
-                    setIsFocus2(false);
-                    
-                }}
-                renderLeftIcon={() => (
-                    <Text className="" style={styles.selectedTextStyle}>
-                        To:&nbsp;
-                    </Text>
-                )}
-            />
+        <View className="flex-1 h-full w-full bg-gray-900">
+            <View className="z-10 pl-2 pr-2 mb-2 mt-[75px] w-full">
+                <Dropdown
+                    className={`w-full shadow-md z-10 bg-white h-[50px] border border-gray-300 rounded-2xl px-[8px] ${(value1 || isFocus1) && "border-blue-700"}`}
+                    placeholderStyle={styles.placeholderStyle}
+                    selectedTextStyle={styles.selectedTextStyle}
+                    inputSearchStyle={styles.inputSearchStyle}
+                    iconStyle={styles.iconStyle}
+                    data={locations}
+                    search
+                    maxHeight={300}
+                    labelField="label"
+                    valueField="value"
+                    placeholder={!isFocus1 ? 'Select item' : '...'}
+                    searchPlaceholder="Search..."
+                    value={value1}
+                    onFocus={() => setIsFocus1(true)}
+                    onBlur={() => setIsFocus1(false)}
+                    onChange={item => {
+                        setValue1(item.value);
+                        setIsFocus1(false);
+
+                    }}
+                    renderLeftIcon={() => (
+                        <Text style={styles.selectedTextStyle}>
+                            From:&nbsp;
+                        </Text>
+                    )}
+                />
+            </View>
+            <View className="z-10 pl-2 pr-2 w-full">
+                <Dropdown
+                    className={`w-full h-[50px] shadow-md z-10 bg-white border border-gray-300 rounded-2xl px-[8px] ${(value2 || isFocus2) && "border-blue-700"}`}
+                    placeholderStyle={styles.placeholderStyle}
+                    selectedTextStyle={styles.selectedTextStyle}
+                    inputSearchStyle={styles.inputSearchStyle}
+                    iconStyle={styles.iconStyle}
+                    data={locations}
+                    search
+                    maxHeight={300}
+                    labelField="label"
+                    valueField="value"
+                    placeholder={!isFocus2 ? 'Select item' : '...'}
+                    searchPlaceholder="Search..."
+                    value={value2}
+                    onFocus={() => setIsFocus2(true)}
+                    onBlur={() => setIsFocus2(false)}
+                    onChange={item => {
+                        setValue2(item.value);
+                        setIsFocus2(false);
+
+                    }}
+                    renderLeftIcon={() => (
+                        <Text className="" style={styles.selectedTextStyle}>
+                            To:&nbsp;
+                        </Text>
+                    )}
+                />
+            </View>
+
+
             <TouchableOpacity
                 disabled={((!value1 || !value2) || (value1 == value2))}
-                className={`p-4 bg-blue-500 ${((!value1 || !value2) || (value1 == value2)) && "bg-blue-200" } rounded-lg`}
+                className={`p-4 bg-blue-500 m-2 items-center z-10 shadow ${((!value1 || !value2) || (value1 == value2)) && "bg-blue-200"} rounded-2xl`}
                 onPress={() => findRoute()}
             >
                 <Text className="text-black dark:text-white uppercase">Find Route</Text>
             </TouchableOpacity>
+            {noRoute && <Text className="z-10 w-full text-red-500 text-center">No Route Available</Text>}
 
-            <MapView className='h-[400px] w-full'
+            <MapView className='absolute z-0 h-full w-full'
                 ref={mapRef}
                 customMapStyle={mapStyles}
                 provider={PROVIDER_GOOGLE}
@@ -270,16 +281,15 @@ export default function App() {
                     />)
                 })}
             </MapView>
+            <View className="absolute z-10 right-5 bottom-5">
+                <Pressable className="m-2 p-4 bg-blue-500 rounded-2xl shadow" onPress={() => { mapRef.current.animateToRegion(initialRegion, 1 * 1000) }}>
+                    <Text className="text-black uppercase">
+                        Go home
+                    </Text>
+                </Pressable>
 
-            <Pressable className="p-4 bg-blue-200 rounded-lg" onPress={() => { mapRef.current.animateToRegion(initialRegion, 1 * 1000) }}>
-                <Text className="text-black dark:text-white uppercase">
-                    Go home
-                </Text>
-            </Pressable>
-            <Text className='text-green-500'>Current latitude {region.latitude}</Text>
-            <Text className='text-green-500'>Current longitude {region.longitude}</Text>
-            <Text className='text-green-500'>Current latitudeDelta {region.latitudeDelta}</Text>
-            <Text className='text-green-500'>Current longitudeDelta {region.longitudeDelta}</Text>
+            </View>
+
         </View>
     );
 }
