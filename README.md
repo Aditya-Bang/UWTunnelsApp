@@ -1,0 +1,1 @@
+A cross-platform mobile app enabling University of Waterloo students to efficiently navigate between classes by identifying the shortest route through campus tunnels.
