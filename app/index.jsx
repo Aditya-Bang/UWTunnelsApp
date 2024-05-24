@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
-import MapView, { Marker, PROVIDER_GOOGLE, Polygon, Polyline } from 'react-native-maps';
+import MapView, { Marker, Polygon, Polyline } from 'react-native-maps';
 import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 // import { Feather, AntDesign } from '@expo/vector-icons';
+// import { PROVIDER_GOOGLE } from 'react-native-maps';
 import mapStyles from '../public/mapStyles.json'
 import locations from '../public/locations.json'
 import tunnels from '../public/tunnels.json'
@@ -230,8 +231,6 @@ export default function App() {
 
             <MapView className='absolute z-0 h-full w-full'
                 ref={mapRef}
-                customMapStyle={mapStyles}
-                provider={PROVIDER_GOOGLE}
 
                 initialRegion={initialRegion}
                 onRegionChange={(region) => setRegion(region)}
