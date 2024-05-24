@@ -3,11 +3,11 @@ import MapView, { Marker, PROVIDER_GOOGLE, Polygon, Polyline } from 'react-nativ
 import { Pressable, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-import { Feather, AntDesign } from '@expo/vector-icons';
+// import { Feather, AntDesign } from '@expo/vector-icons';
 import mapStyles from '../public/mapStyles.json'
 import locations from '../public/locations.json'
 import tunnels from '../public/tunnels.json'
-import { SafeAreaView } from 'react-native-safe-area-context';
+// import { SafeAreaView } from 'react-native-safe-area-context';
 
 const initialRegion = {
     latitude: 43.47136232108102,
@@ -289,7 +289,6 @@ export default function App() {
                 </Pressable>
 
             </View>
-
         </View>
     );
 }
