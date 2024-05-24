@@ -5,7 +5,7 @@ import { Text } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 // import { Feather, AntDesign } from '@expo/vector-icons';
 // import { PROVIDER_GOOGLE } from 'react-native-maps';
-import mapStyles from '../public/mapStyles.json'
+// import mapStyles from '../public/mapStyles.json'
 import locations from '../public/locations.json'
 import tunnels from '../public/tunnels.json'
 // import { SafeAreaView } from 'react-native-safe-area-context';
